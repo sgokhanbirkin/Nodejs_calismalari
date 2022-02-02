@@ -1,7 +1,10 @@
 const products = [
-    { id: "13213", name: 'Samsung S6', price: '2000', imageUrl: '1.jpg', description: 'iyi telefon' },
-    { id: "13214", name: 'Samsung S7', price: '3000', imageUrl: '2.jpg', description: 'iyi telefon' },
-    { id: "13215", name: 'Samsung S8', price: '4000', imageUrl: '3.jpg', description: 'iyi telefon' }];
+    { id: "13213", name: 'Samsung S6', price: '2000', imageUrl: '1.jpg', description: 'iyi telefon', categoryid: "1" },
+    { id: "13214", name: 'Samsung S7', price: '3000', imageUrl: '2.jpg', description: 'iyi telefon',  categoryid: "1"  },
+    { id: "13215", name: 'Samsung S8', price: '4000', imageUrl: '3.jpg', description: 'iyi telefon',  categoryid: "1"  },
+    { id: "13215", name: 'Dizüstü Bilgisayar', price: '14000', imageUrl: '3.jpg', description: 'Bilgisayar',  categoryid: "2"  },
+    { id: "13215", name: 'Imac', price: '44000', imageUrl: '3.jpg', description: 'Pro bilgisayar',  categoryid: "2"  },
+];
 
 module.exports = class Product {
 
@@ -26,6 +29,10 @@ module.exports = class Product {
         return product;
     }
 
+    static getProductsByCategoryId(categorid) {
+        return products.filter(i => i.categoryid == categorid);
+    }
+
     static Update(product) {
         const index = products.findIndex(i => i.id === product.id);
 
@@ -34,6 +41,12 @@ module.exports = class Product {
         products[index].imageUrl = product.imageUrl;
         products[index].description = product.description;
     }
+
+    static DeleteById(id){
+        const index = products.find(i => i.id === id);
+        products.splice(index,1);
+    }
+
 
 }
 
