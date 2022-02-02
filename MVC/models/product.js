@@ -8,12 +8,14 @@ const products = [
 
 module.exports = class Product {
 
-    constructor(name, price, imageUrl, description) {
+    constructor(name, price, imageUrl, description, categoryid) {
         this.id = (Math.floor(Math.random() * 99999) + 1).toString();
         this.name = name;
         this.price = price;
         this.imageUrl = imageUrl;
         this.description = description;
+        this.categoryid = categoryid;
+        
     }
 
     saveProduct() {
@@ -29,8 +31,8 @@ module.exports = class Product {
         return product;
     }
 
-    static getProductsByCategoryId(categorid) {
-        return products.filter(i => i.categoryid == categorid);
+    static getProductsByCategoryId(categoryid) {
+        return products.filter(i => i.categoryid == categoryid);
     }
 
     static Update(product) {
@@ -40,6 +42,8 @@ module.exports = class Product {
         products[index].price = product.price;
         products[index].imageUrl = product.imageUrl;
         products[index].description = product.description;
+        products[index].categoryid = product.categoryid;
+
     }
 
     static DeleteById(id){
